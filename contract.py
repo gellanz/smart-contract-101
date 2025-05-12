@@ -7,7 +7,6 @@ from dotenv import load_dotenv
 load_dotenv()
 rpc_url = os.getenv("AVALANCHE_RPC_URL")
 private_key = os.getenv("PRIVATE_KEY_BUYER")  # Deployer (e.g., buyer)
-
 # Connect to Avalanche
 w3 = Web3(Web3.HTTPProvider(rpc_url))
 assert w3.is_connected(), "Failed to connect to Avalanche"
@@ -36,7 +35,7 @@ def deploy_contract():
         "gasPrice": w3.to_wei("3", "gwei")
     })
     signed_tx = w3.eth.account.sign_transaction(tx, private_key)
-    tx_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)
+    tx_hash = w3.eth.send_raw_transaction(signed_tx.raw_transaction)
     receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
     print(f"Contract deployed at: {receipt.contractAddress}")
     return receipt.contractAddress
