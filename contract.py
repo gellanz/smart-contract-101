@@ -33,7 +33,7 @@ def deploy_contract():
         "from": account.address,
         "nonce": w3.eth.get_transaction_count(account.address),
         "gas": 3000000,
-        "gasPrice": w3.to_wei("2", "gwei")
+        "gasPrice": w3.to_wei("3", "gwei")
     })
     signed_tx = w3.eth.account.sign_transaction(tx, private_key)
     tx_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)

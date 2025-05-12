@@ -75,6 +75,6 @@ if __name__ == "__main__":
 
     # Execute stages
     initiate_sale(buyer_key, property_id, seller_address, notary_address, government_address, price_wei)
-    verify_notary(notary_key, property_id)
-    verify_taxes(government_key, property_id, tax_amount_wei)
-    complete_sale(buyer_key, property_id)
+    #verify_notary(notary_key, property_id)
+    #verify_taxes(government_key, property_id, tax_amount_wei)
+    #complete_sale(buyer_key, property_id)
