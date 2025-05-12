@@ -13,7 +13,7 @@ government_key = os.getenv("PRIVATE_KEY_GOVERNMENT")
 
 # Connect to Avalanche
 w3 = Web3(Web3.HTTPProvider(rpc_url))
-assert w3.is_connected(), "Failed to connect to Avalanche"
+assert w3.isConnected(), "Failed to connect to Avalanche"
 
 # Load contract
 with open("contract.json", "r") as f:
@@ -28,7 +28,7 @@ def send_transaction(private_key, tx):
     tx["from"] = account.address
     tx["nonce"] = w3.eth.get_transaction_count(account.address)
     tx["gas"] = 200000
-    tx["gasPrice"] = w3.to_wei("3", "gwei") 
+    # tx["gasPrice"] = w3.toWei("3", "gwei") 
     signed_tx = w3.eth.account.sign_transaction(tx, private_key)
     tx_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)
     receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
@@ -70,8 +70,8 @@ if __name__ == "__main__":
     seller_address = w3.eth.account.from_key(seller_key).address
     notary_address = w3.eth.account.from_key(notary_key).address
     government_address = w3.eth.account.from_key(government_key).address
-    price_wei = w3.to_wei("1", "ether")  # 1 AVAX
-    tax_amount_wei = w3.to_wei("0.5", "ether")  # 0.5 AVAX tax
+    price_wei = w3.toWei("1", "ether")  # 1 AVAX
+    tax_amount_wei = w3.toWei("0.5", "ether")  # 0.5 AVAX tax
 
     # Execute stages
     initiate_sale(buyer_key, property_id, seller_address, notary_address, government_address, price_wei)

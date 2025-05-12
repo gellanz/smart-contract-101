@@ -45,3 +45,5 @@ contract_address = deploy_contract()
 with open("contract.json", "w") as f:
     import json
     json.dump({"address": contract_address, "abi": contract_interface["abi"]}, f)
+
+# monitor: https://testnet.snowtrace.io/address/0x0792464034ae1ddB20CEB01C02A2594a1aEdd7Ae
